@@ -12,6 +12,7 @@ import javax.swing.event.ChangeListener;
 
 import omr.Project;
 import omr.gui.Gui;
+import omr.gui.MyGUI;
 
 public class ResultsPanel extends JPanel implements ChangeListener {
     private static final long serialVersionUID = 1L;
@@ -20,6 +21,18 @@ public class ResultsPanel extends JPanel implements ChangeListener {
     private ResultsTableModel resultsTableModel;
     
     public ResultsPanel(Gui gui) {
+        this.setLayout(new BorderLayout());
+        
+        // Add widgets
+        resultsTableModel = new ResultsTableModel();
+        table = new JTable(resultsTableModel);
+        JScrollPane scrollPane = new JScrollPane(table);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.setFillsViewportHeight(true);
+        this.add(scrollPane, BorderLayout.CENTER);
+    }
+    
+    public ResultsPanel(MyGUI gui) {
         this.setLayout(new BorderLayout());
         
         // Add widgets

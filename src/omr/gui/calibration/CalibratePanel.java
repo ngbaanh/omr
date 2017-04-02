@@ -24,11 +24,13 @@ import omr.Sheet;
 import omr.Task;
 import omr.Project.ThresholdingStrategy;
 import omr.gui.Gui;
+import omr.gui.MyGUI;
 
 public class CalibratePanel extends JPanel implements ListSelectionListener, ChangeListener, Observer  {
     private static final long serialVersionUID = 1L;
     
     private Gui gui;
+    private MyGUI myGui;
     private Project project;
     
     private SheetTableModel sheetTableModel;
@@ -52,6 +54,56 @@ public class CalibratePanel extends JPanel implements ListSelectionListener, Cha
     
     public CalibratePanel(Gui gui) {
         this.gui = gui;
+        
+        this.setLayout(new BorderLayout());
+        
+        // Sheet list on the left
+        sheetTableModel = new SheetTableModel();
+        sheetList = new JTable(sheetTableModel);
+        sheetList.setFillsViewportHeight(true);
+        sheetList.getSelectionModel().addListSelectionListener(this);
+        JScrollPane sheetListScrollPane = new JScrollPane(sheetList);
+        
+        // Sheet view in the middle
+        sheetView = new SheetCalibrationEditor();
+        sheetView.setUndoSupport(gui.getUndoSupport());
+        sheetViewScrollPane = new JScrollPane(sheetView);
+
+        // Histogram on the bottom
+        histogram = new HistogramComponent(sheetView);
+        histogram.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Histogram"));
+
+        // Properties on the right
+        propertiesPanel = new JPanel();
+        propertiesPanel.setLayout(new BoxLayout(propertiesPanel, BoxLayout.PAGE_AXIS));
+        propertiesScroll = new JScrollPane(propertiesPanel);
+        
+        calibrationProperties = new CalibrationPropertiesPanel(sheetView, histogram);
+        propertiesPanel.add(calibrationProperties);
+        
+        
+        rightPanel = new JPanel(new BorderLayout());
+        rightPanel.add(sheetViewScrollPane, BorderLayout.CENTER);
+        rightPanel.add(propertiesScroll, BorderLayout.LINE_END);
+        rightPanel.add(histogram, BorderLayout.PAGE_END);
+        
+        // Split pane
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setOneTouchExpandable(false);
+        splitPane.setDividerLocation(150);
+        splitPane.setLeftComponent(sheetListScrollPane);
+        splitPane.setRightComponent(rightPanel);
+        
+        // Toolbar
+        JToolBar toolbar = new CalibrateToolBar(sheetView);
+        
+        // Add top level components
+        this.add(toolbar, BorderLayout.PAGE_START);
+        this.add(splitPane, BorderLayout.CENTER);
+    }
+    
+    public CalibratePanel(MyGUI gui) {
+        this.myGui = gui;
         
         this.setLayout(new BorderLayout());
         

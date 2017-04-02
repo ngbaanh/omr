@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 import omr.Project;
 import omr.gui.RegistrationComponent;
 import omr.gui.Gui;
+import omr.gui.MyGUI;
 import omr.gui.QuestionGroupComponent;
 import omr.gui.SheetViewComponent;
 
@@ -34,6 +35,37 @@ public class StructurePanel extends JPanel implements ChangeListener {
     private RegistrationMarkerPropertiesPanel registrationMarkerProperties;     // Properties of the currently selected registration marker, to be put inside componentProperties
     
     public StructurePanel(Gui gui) {
+        this.setLayout(new BorderLayout());
+        
+        // Sheet view in the middle
+        sheetEditor = new SheetStructureEditor();
+        sheetEditor.setUndoSupport(gui.getUndoSupport());
+        sheetEditor.addSelectionListener(this);
+        sheetEditorScrollPane = new JScrollPane(sheetEditor);
+
+        // Properties on the right
+        propertiesPanel = new JPanel();
+        propertiesPanel.setLayout(new BoxLayout(propertiesPanel, BoxLayout.PAGE_AXIS));
+        propertiesScroll = new JScrollPane(propertiesPanel);
+        
+        structureProperties = new StructurePropertiesPanel(sheetEditor);
+        structureProperties.setUndoSupport(gui.getUndoSupport());
+        propertiesPanel.add(structureProperties);
+        
+        questionGroupProperties = new QuestionGroupPropertiesPanel();
+        questionGroupProperties.setUndoSupport(gui.getUndoSupport());
+        registrationMarkerProperties = new RegistrationMarkerPropertiesPanel();
+        registrationMarkerProperties.setUndoSupport(gui.getUndoSupport());
+
+        this.add(sheetEditorScrollPane, BorderLayout.CENTER);
+        this.add(propertiesScroll, BorderLayout.LINE_END);
+        
+        // Toolbar
+        JToolBar toolbar = new StructureToolBar(sheetEditor);
+        this.add(toolbar, BorderLayout.PAGE_START);
+    }
+    
+    public StructurePanel(MyGUI gui) {
         this.setLayout(new BorderLayout());
         
         // Sheet view in the middle

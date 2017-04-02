@@ -1,12 +1,18 @@
 package omr.gui;
 
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.io.File;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import omr.CsvSerializer;
 import omr.Deserializer;
@@ -18,13 +24,8 @@ import omr.gui.calibration.CalibratePanel;
 import omr.gui.results.ResultsPanel;
 import omr.gui.structure.StructurePanel;
 
-/**
- * Main window of the graphical user interface.
- * 
- * Most methods are called from the Menu.
- */
-public class Gui extends JFrame {
-    private static final long serialVersionUID = 1L;
+public class MyGUI extends JFrame {
+private static final long serialVersionUID = 1L;
     
     private Project project;            // Project being edited
     private File projectFile;           // Currently open project file
@@ -32,7 +33,14 @@ public class Gui extends JFrame {
     private UndoSupport undoSupport;
     private Executor executor;          // Background tasks executor
     
+    
+    private LoginPanel loginPanel; // My square! too.
+    
+    
+    private NavigationPanel navigationPanel;
     // Tabs
+    private OverviewPanel overviewPanel; // My square!
+    
     private StructurePanel structurePanel;
     private CalibratePanel calibratePanel;
     private ResultsPanel resultsPanel;
@@ -43,7 +51,7 @@ public class Gui extends JFrame {
     /**
      * Initializes the GUI and shows the main window.
      */
-    public Gui() {
+    public MyGUI() {
         super("Optical Mark Recognition");
 
         // Background tasks executor
@@ -75,16 +83,26 @@ public class Gui extends JFrame {
     /**
      * Adds widgets to the main window.
      */
-    private void addWidgets() {
-        //this.setLayout(new BorderLayout());
+    private void addWidgets() {  
+        this.setLayout(new BorderLayout());
+        
+        
+        JPanel containerPanel = new JPanel();
+        containerPanel.setLayout(new BorderLayout());
+        
+        navigationPanel = new NavigationPanel();
+        containerPanel.add(navigationPanel, BorderLayout.WEST);
 
         // Tabs
         JTabbedPane tabs = new JTabbedPane();
-        this.add(tabs, BorderLayout.CENTER);
+        containerPanel.add(tabs);
+//        this.add(tabs, BorderLayout.CENTER);
+        this.add(containerPanel, BorderLayout.CENTER);
         
         // TODO: something here
         // ...
-        
+        overviewPanel = new OverviewPanel();
+        tabs.addTab("Overview", null, overviewPanel, "Show images...");
         
         structurePanel = new StructurePanel(this);
         tabs.addTab("Structure", null, structurePanel, "Define answer form structure");
@@ -104,10 +122,17 @@ public class Gui extends JFrame {
         statusBar = new StatusBar();
         this.add(statusBar, BorderLayout.PAGE_END);
         
-                
         // Menu
-        // FIXME: restore this
-//        setJMenuBar(new Menu(this));
+        Menu menu = new Menu(this);
+        //this.setJMenuBar(menu);
+        
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        loginPanel = new LoginPanel();
+        
+        topPanel.add(menu, BorderLayout.CENTER);
+        topPanel.add(loginPanel, BorderLayout.EAST);
+        this.add(topPanel, BorderLayout.NORTH);
     }
     
     /**
@@ -361,5 +386,4 @@ public class Gui extends JFrame {
         // Send emails in a background process
         execute(mailerTask);
     }
-    
 }

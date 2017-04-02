@@ -3,6 +3,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import omr.gui.Gui;
+import omr.gui.MyGUI;
 
 
 
@@ -49,6 +50,7 @@ public class Omr {
         }
         
         // Create gui
-        new Gui();
+//        new Gui();
+        new MyGUI();
     }
 }
