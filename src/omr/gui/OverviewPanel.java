@@ -4,18 +4,38 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class OverviewPanel extends JPanel {
 	// TODO: do a stuff....
 	public OverviewPanel() {
-		this.setLayout(new GridLayout(3,5));
-		for (int i = 0; i < 15; i++) {
-			Thumbnails thumb = new Thumbnails(null, "Image no. " + i);
-			this.add(thumb);
+		this.setLayout(new GridLayout(2,2));
+		for (int i = 0; i < 4; i++) {
+			// Loading image
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File("/C:/test 1.png"));
+			} catch (IOException e) {
+			}
+//			
+//			Thumbnails thumb = new Thumbnails(image, "Image no. " + i);
+//			thumb.setVisible(true);
+//			this.add(thumb);
+//			System.out.println(image.getWidth());
+			JLabel picLabel = new JLabel(new ImageIcon(image));
+			JScrollPane picScrollPane = new JScrollPane(picLabel);
+			this.add(picScrollPane);
+			
+			
 		}
 	}
 }
