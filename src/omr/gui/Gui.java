@@ -15,6 +15,7 @@ import omr.SendFeedbacksTask;
 import omr.Serializer;
 import omr.Task;
 import omr.gui.calibration.CalibratePanel;
+import omr.gui.navigation.NavigationPanel;
 import omr.gui.results.ResultsPanel;
 import omr.gui.structure.StructurePanel;
 
@@ -36,6 +37,9 @@ public class Gui extends JFrame {
     private StructurePanel structurePanel;
     private CalibratePanel calibratePanel;
     private ResultsPanel resultsPanel;
+    
+    // Columns
+    private NavigationPanel navigationPanel;
     
     private StatusBar statusBar;
 
@@ -119,6 +123,7 @@ public class Gui extends JFrame {
         structurePanel.setProject(project);
         calibratePanel.setProject(project);
         resultsPanel.setProject(project);
+        navigationPanel.setProject(project);
     }
     
     public UndoSupport getUndoSupport() {

@@ -55,6 +55,7 @@ public class SheetComboModel implements ComboBoxModel, Observer {
         // Notify listeners
         for (ListDataListener listener : this.listDataListeners) {
             listener.contentsChanged(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, this.getSize()));
+           
         }
     }
 

@@ -23,6 +23,7 @@ import omr.Task;
 import omr.gui.calibration.CalibratePanel;
 import omr.gui.results.ResultsPanel;
 import omr.gui.structure.StructurePanel;
+import omr.gui.navigation.NavigationPanel;
 
 public class MyGUI extends JFrame {
 private static final long serialVersionUID = 1L;
