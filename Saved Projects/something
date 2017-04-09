@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omr-project blackThreshold="-1" version="0.1" whiteThreshold="256">
+    <structure referenceSheet="0002.jpg"/>
+    <answers>
+        <sheet id="0001.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0001.jpg"/>
+        <sheet id="0002.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0002.jpg"/>
+        <sheet id="0003.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0003.jpg"/>
+        <sheet id="0004.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0004.jpg"/>
+        <sheet id="0005.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0005.jpg"/>
+        <sheet id="0006.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0006.jpg"/>
+        <sheet id="0007.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0007.jpg"/>
+        <sheet id="0008.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0008.jpg"/>
+        <sheet id="0009.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0009.jpg"/>
+        <sheet id="0010.jpg" page="0" rotation="0" src="C:\Users\MyPC\git\omr\testdata\0010.jpg"/>
+    </answers>
+</omr-project>
