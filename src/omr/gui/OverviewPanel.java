@@ -23,7 +23,7 @@ public class OverviewPanel extends JPanel {
 			// Loading image
 			BufferedImage image = null;
 			try {
-				image = ImageIO.read(new File("/Users/swift/test 1.jpg"));
+				image = ImageIO.read(new File("/C:/test 1.png"));
 			} catch (IOException e) {
 			}
 //			

@@ -33,6 +33,7 @@ public class Project implements Observer {
         
         this.sheetStructure = new SheetStructure();
         this.sheetStructure.addObserver(this);
+        this.answerSheets.addObserver(this);
         
         this.histogram = new Histogram();
         this.thresholdingStrategy = ThresholdingStrategy.PER_SHEET;

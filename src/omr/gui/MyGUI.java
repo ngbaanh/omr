@@ -63,11 +63,13 @@ private static final long serialVersionUID = 1L;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(800, 600));
 
+     // Initialize a new project
+        this.setProject(new Project());
+        
         //Add widgets
         addWidgets();
         
-        // Initialize a new project
-        this.setProject(new Project());
+        
 
         //Display the window
         //this.pack();
@@ -91,7 +93,7 @@ private static final long serialVersionUID = 1L;
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BorderLayout());
         
-        navigationPanel = new NavigationPanel();
+        navigationPanel = new NavigationPanel(this.project);
         containerPanel.add(navigationPanel, BorderLayout.WEST);
 
         // Tabs
@@ -145,6 +147,7 @@ private static final long serialVersionUID = 1L;
         structurePanel.setProject(project);
         calibratePanel.setProject(project);
         resultsPanel.setProject(project);
+        navigationPanel.setProject(project);
     }
     
     public UndoSupport getUndoSupport() {
