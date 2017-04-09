@@ -1,5 +1,6 @@
 package omr.gui;
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -23,6 +24,7 @@ import omr.Task;
 import omr.gui.calibration.CalibratePanel;
 import omr.gui.results.ResultsPanel;
 import omr.gui.structure.StructurePanel;
+import omr.gui.navigation.NavigationPanel;
 
 public class MyGUI extends JFrame {
 private static final long serialVersionUID = 1L;
@@ -144,6 +146,7 @@ private static final long serialVersionUID = 1L;
         structurePanel.setProject(project);
         calibratePanel.setProject(project);
         resultsPanel.setProject(project);
+        navigationPanel.setProject(project);
     }
     
     public UndoSupport getUndoSupport() {
