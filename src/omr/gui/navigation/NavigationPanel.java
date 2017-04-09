@@ -42,7 +42,7 @@ public class NavigationPanel extends JPanel implements ChangeListener {
 		
 		// Name Project Panel
 		nameProjectPanel = new JPanel();
-		nameProjectLabel = new JLabel("Math 209");
+		nameProjectLabel = new JLabel("Math 2011");
 		Font fontNameProjectLabel = nameProjectLabel.getFont();
 		nameProjectLabel.setFont(fontNameProjectLabel.deriveFont(fontNameProjectLabel.getStyle() ^ Font.BOLD));
 		
