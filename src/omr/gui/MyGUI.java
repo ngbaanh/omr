@@ -62,20 +62,19 @@ private static final long serialVersionUID = 1L;
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(800, 600));
-
-     // Initialize a new project
-        this.setProject(new Project());
         
         //Add widgets
-        addWidgets();
+        this.addWidgets();
         
+        myDir = new File(".");
+        
+        // Initialize a new project
+        this.setProject(new Project());
         
 
         //Display the window
         //this.pack();
         this.setVisible(true);
-
-        myDir = new File(".");
     }
     
     private void reset() {
@@ -93,7 +92,8 @@ private static final long serialVersionUID = 1L;
         JPanel containerPanel = new JPanel();
         containerPanel.setLayout(new BorderLayout());
         
-        navigationPanel = new NavigationPanel(this.project);
+        navigationPanel = new NavigationPanel(
+        		);
         containerPanel.add(navigationPanel, BorderLayout.WEST);
 
         // Tabs

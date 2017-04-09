@@ -5,19 +5,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 import omr.Project;
-import omr.Sheet;
+import omr.gui.MyGUI;
 
 public class NavigationPanel extends JPanel {
 	/**
@@ -35,7 +31,7 @@ public class NavigationPanel extends JPanel {
 	private ProjectTreeModel projectTreeModel;
 	private JTree projectTree;
 	
-	public NavigationPanel(Project project) {
+	public NavigationPanel() {
 		this.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		// Name Project Panel
@@ -56,7 +52,7 @@ public class NavigationPanel extends JPanel {
 //		projectTreePanel.add(tree);
 		
 		//projectTreeModel = new ProjectTreeModel();
-		projectTreeModel = new ProjectTreeModel(project);
+		projectTreeModel = new ProjectTreeModel();
 		projectTree = new JTree(projectTreeModel);
 		
 		//Note: Try later to remove projectTreeScroll

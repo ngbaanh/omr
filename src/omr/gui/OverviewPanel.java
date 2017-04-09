@@ -31,9 +31,10 @@ public class OverviewPanel extends JPanel {
 //			thumb.setVisible(true);
 //			this.add(thumb);
 //			System.out.println(image.getWidth());
-			JLabel picLabel = new JLabel(new ImageIcon(image));
-			JScrollPane picScrollPane = new JScrollPane(picLabel);
-			this.add(picScrollPane);
+			
+//			JLabel picLabel = new JLabel(new ImageIcon(image));
+//			JScrollPane picScrollPane = new JScrollPane(picLabel);
+//			this.add(picScrollPane);
 			
 			
 		}

@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import javax.swing.event.TreeModelListener;
@@ -14,7 +13,7 @@ import javax.swing.tree.TreePath;
 
 import omr.Project;
 import omr.Sheet;
-import sun.launcher.resources.launcher_zh_TW;
+import omr.gui.MyGUI;
 
 public class ProjectTreeModel implements TreeModel, Observer {
     
@@ -24,12 +23,8 @@ public class ProjectTreeModel implements TreeModel, Observer {
     
     private LinkedList<ListDataListener> listDataListeners;
     
-//    public ProjectTreeModel() {
-//        this.listDataListeners = new LinkedList<ListDataListener>();
-//    }
-    public ProjectTreeModel(Project project) {
-    	this.project = project;
-    	this.listDataListeners = new LinkedList<ListDataListener>();
+    public ProjectTreeModel() {
+        this.listDataListeners = new LinkedList<ListDataListener>();
     }
     public void setProject(Project project) {
         // Unsubscribe from previous model
